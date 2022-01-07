@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const baseURL = 'http://localhost:3000/'
+const baseURL = 'http://120.26.42.165:3000'
 
 // const baseURL  = "http://localhost:3000";
 

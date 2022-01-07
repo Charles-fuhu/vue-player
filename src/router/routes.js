@@ -1,8 +1,5 @@
 export default [
-    {
-        path: '/',
-        redirect: '/discovery'
-    },
+
     {
         path: '/discovery',
         component: () => import('../components/Discovery.vue')
