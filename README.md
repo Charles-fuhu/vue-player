@@ -9,6 +9,6 @@
 
 2.npm serve
 
-[输入图片说明](src/assets/1.png)
-[输入图片说明](src/assets/2.png)
-[输入图片说明](src/assets/3.png)
+![1](src/assets/1.png)!
+![1](src/assets/2.png)!
+![1](src/assets/3.png)!
