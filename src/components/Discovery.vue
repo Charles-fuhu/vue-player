@@ -101,7 +101,7 @@ export default {
     getSongList(5).then((res) => {
       this.playList = res.data.result;
     });
-    getNewSong(20).then((res) => {
+    getNewSong(10).then((res) => {
       this.newSong = res.data.result;
     });
     newMV(4).then((res) => {

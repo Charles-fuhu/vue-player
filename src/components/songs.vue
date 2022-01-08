@@ -8,7 +8,7 @@
       <span class="item" :class="{ active: type == 16 }" @click="type = 16">韩国</span>
     </div>
     <!-- 底部的table -->
-    <table class="el-table playlit-table">
+    <table class="el-table playlist-table">
       <thead>
         <th></th>
         <th></th>
@@ -18,24 +18,25 @@
         <th>时长</th>
       </thead>
       <tbody>
-        <tr class="el-table__row" v-for="(item, index) in tableData" :key="item.id">
+        <tr v-for="(item, index) in lists" :key="index" v-show="index < 10" class="el-table__row">
           <td>{{ index + 1 }}</td>
           <td>
-            <div class="img-wrap" @click="playMusic(item.id)">
-              <img :src="item.album.picUrl" alt />
-              <span class="iconfont icon-play"></span>
+            <div class="img-wrap">
+              <img v-lazy="item.album.picUrl" :key="item.album.picUrl" alt />
+              <!-- 播放按钮 -->
+              <span @click="playMusic(item.id)" class="iconfont icon-play"></span>
             </div>
           </td>
           <td>
             <div class="song-wrap">
               <div class="name-wrap">
                 <span>{{ item.name }}</span>
-                <span  class="iconfont icon-mv"></span>
+                <span class="iconfont icon-mv"></span>
               </div>
-              <span>{{ item.subTitle }}</span>
+              <span></span>
             </div>
           </td>
-          <td>{{ item.artists[0].name }}</td>
+          <td>{{ item.album.artists['0'].name }}</td>
           <td>{{ item.album.name }}</td>
           <td>{{ item.duration | formatDuration }}</td>
         </tr>
@@ -46,22 +47,36 @@
 
 <script>
 import { getSongData } from "../api/song";
+import { songUrl } from '../api/discovery'
 export default {
   data() {
     return {
       type: 0,
-      tableData: []
+      lists: []
     };
   },
   methods: {
-    async getData() {
-      const { data } = await getSongData({ type: this.type })
+    getData() {
+      getSongData({ type: this.type }).then(res => {
 
-      console.log(data.data)
-      this.tableData = data.data //拿到最新音乐数据
+        this.lists = res.data.data
+      })
+    },
+    async playMusic(id) {
+      const { data } = await songUrl({ id: id })//拿到歌曲链接地址
+      // console.log(data.data[0].url)
+      this.$parent.url = data.data[0].url //给播放器地址赋值
+
     }
 
+
   },
+  watch: {
+    type() {
+      this.getData()
+    }
+  },
+
   created() {
     this.getData()
   }

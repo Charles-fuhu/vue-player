@@ -1,7 +1,14 @@
 import axios from 'axios'
 
+let baseURL;
+if(process.env.NODE_ENV === 'development') {
+    baseURL = 'http://localhost:3000/';
+} else if(process.env.NODE_ENV === 'production') {
+    baseURL = 'http://120.26.42.165:3000/';
+}
 
-const baseURL = 'http://120.26.42.165:3000'
+
+
 
 // const baseURL = "http://localhost:3000";
 
