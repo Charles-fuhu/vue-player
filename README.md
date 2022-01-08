@@ -8,3 +8,7 @@
 1. 打开方式npm install
 
 2.npm serve
+
+![1](src/assets/1.png)!
+![1](src/assets/2.png)!
+![1](src/assets/3.png)!
