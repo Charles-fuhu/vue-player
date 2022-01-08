@@ -1,6 +1,7 @@
 <template>
   <div>
-  <img src="../assets/mv.png" alt="">
+  <h1>也还没开发呢</h1>
+  <img src="../assets/ss.jpg" alt="">
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 {
-  "name": "vue-bli",
+  "name": "music-player",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,6 +23,7 @@
     "babel-preset-es2015": "^6.24.1",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "vue-lazyload": "^1.3.3",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [

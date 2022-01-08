@@ -3,7 +3,7 @@
     <!-- 同步 -->
     <div class="top-card" v-if="listName">
       <div class="icon-wrap">
-        <img :src="listCover" alt="" />
+        <img v-lazy="listCover" alt="" />
       </div>
       <div class="content-wrap">
         <div class="tag">精品歌单</div>
@@ -12,7 +12,7 @@
         </div>
         <div class="info">{{ listDesc }}</div>
       </div>
-      <img :src="listCover" alt="" class="bg" />
+      <img v-lazy="listCover" alt="" class="bg" />
       <div class="bg-mask"></div>
     </div>
     <div class="tab-container">
@@ -112,7 +112,7 @@
                 播放量:
                 <span class="num">{{ item.playCount | formatCount }}</span>
               </div>
-              <img :src="item.coverImgUrl" alt="" />
+              <img v-lazy="item.coverImgUrl" alt="" />
               <span class="iconfont icon-play"></span>
             </div>
             <p class="name">{{ item.description }}</p>

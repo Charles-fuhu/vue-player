@@ -1,8 +1,15 @@
+import Discovery from '../components/Discovery.vue'
+
+
 export default [
+    {
+       path:'/',
+       redirect:'/discovery'
+    },
 
     {
         path: '/discovery',
-        component: () => import('../components/Discovery.vue')
+        component: Discovery
     },
     {
         path: '/playlist',

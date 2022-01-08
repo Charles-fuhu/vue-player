@@ -6,30 +6,39 @@ import router from './router'
 import 'element-ui/lib/theme-chalk/index.css'
 import element from './element/index'
 import "babel-polyfill"
-import moment from 'moment';
+
+import VueLazyload from 'vue-lazyload'
 // 全局过滤器
+import moment from 'moment';
+
 Vue.filter('formatDuration', (dt) => {
-  // 转分
-  let min = Math.ceil(dt / 1000 / 60);
-  min = min < 10 ? '0' + min : min;
-  // 秒
-  let sec = Math.ceil((dt / 1000) % 60);
-  sec = sec < 10 ? '0' + sec : sec;
-  return min + ':' + sec;
+    let min = Math.ceil(dt / 1000 / 60);
+    // 转分
+    min = min < 10 ? '0' + min : min;
+    // 秒
+    let sec = Math.ceil((dt / 1000) % 60);
+    sec = sec < 10 ? '0' + sec : sec;
+    return min + ':' + sec;
 })
 Vue.filter('formatTime', (time) => {
-  return moment(time).format('YYYY-MM-DD hh:mm:ss');
+    return moment(time).format('YYYY-MM-DD hh:mm:ss');
 })
 Vue.filter('formatCount', (count) => {
-  if (count / 10000 > 10) {
-    return parseInt(count / 10000) + '万';
-  } else {
-    return count;
-  }
+    if (count / 10000 > 10) {
+        return parseInt(count / 10000) + '万';
+    } else {
+        return count;
+    }
 })
 
 
 Vue.use(element)
+Vue.use(VueLazyload,{
+  error:'', //加载图片失败图片
+  loading:'',//加载状态图片
+  attempt:5 //加载错误后最大尝试次数
+
+})
 
 
 

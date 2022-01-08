@@ -3,7 +3,7 @@
     <el-carousel :interval="4000" type="card" height="200px">
       <!--循环生成标签，轮播图-->
       <el-carousel-item v-for="(item, index) in bannerList" :key="index">
-        <img :src="item.imageUrl" alt="" class="circle" />
+        <img v-lazy="item.imageUrl" alt="" class="circle" />
       </el-carousel-item>
     </el-carousel>
 
@@ -16,7 +16,7 @@
             <div class="desc-wrap">
               <span class="desc">热门推荐</span>
             </div>
-            <img :src="songs.picUrl" alt="" />
+            <img v-lazy="songs.picUrl" alt="" />
             <span class="iconfont icon-play"></span>
           </div>
           <p class="name">{{ songs.name }}</p>
@@ -30,7 +30,7 @@
         <div class="item" v-for="(song, index) in newSong" :key="index">
           <div class="img-wrap">
             <!-- 封面 -->
-            <img :src="song.picUrl" />
+            <img v-lazy="song.picUrl" />
             <span class="iconfont icon-play" @click="playMusic(song.id)"></span>
           </div>
           <div class="song-wrap">
@@ -48,7 +48,7 @@
       <div class="items">
         <div class="item" v-for="(mv,index) in  MV" :key="index">
           <div class="img-wrap">
-            <img :src="mv.picUrl" alt="" />
+            <img v-lazy="mv.picUrl" alt="" />
             <span class="iconfont icon-play"></span>
             <div class="num-wrap">
               <div class="iconfont icon-play"></div>
@@ -90,7 +90,7 @@ export default {
     playMusic(id) {
       songUrl({ id: id }).then((res) => {
         this.$parent.url = res.data.data[0].url;
-        console.log(this.$parent.url)
+        // console.log(this.$parent.url)
       });
     },
   },
@@ -98,14 +98,14 @@ export default {
     getBanner().then((res) => {
       this.bannerList = res.data.banners;
     });
-    getSongList(10).then((res) => {
+    getSongList(5).then((res) => {
       this.playList = res.data.result;
     });
-    getNewSong(10).then((res) => {
+    getNewSong(20).then((res) => {
       this.newSong = res.data.result;
     });
     newMV(4).then((res) => {
-      console.log(res.data.result);
+      // console.log(res.data.result);
       this.MV = res.data.result;
     });
   },
