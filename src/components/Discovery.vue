@@ -46,14 +46,14 @@
     <div class="mvs">
       <h3 class="title">推荐MV</h3>
       <div class="items">
-        <div class="item" v-for="(mv,index) in  MV" :key="index">
+        <div class="item" v-for="(mv,index) in  MV" :key="index" @click="toMv(mv.id)">
           <div class="img-wrap">
             <img v-lazy="mv.picUrl" alt="" />
             <span class="iconfont icon-play"></span>
             <div class="num-wrap">
               <div class="iconfont icon-play"></div>
               <!-- 播放次数 -->
-              <div class="num">{{mv.playCount}}</div>
+              <div class="num">{{mv.playCount | formatCount }}</div>
             </div>
           </div>
           <div class="info-wrap">
@@ -87,6 +87,9 @@ export default {
     };
   },
   methods: {
+    toMv(id){
+      this.$router.push(`/mv?id=${id}`)
+    },
     playMusic(id) {
       songUrl({ id: id }).then((res) => {
         this.$parent.url = res.data.data[0].url;
