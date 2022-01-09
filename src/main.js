@@ -35,7 +35,7 @@ Vue.filter('formatCount', (count) => {
 Vue.use(element)
 Vue.use(VueLazyload, {
     error: '', //加载图片失败图片
-    loading: './assets/lod3.jpg',//加载状态图片
+    loading: '',//加载状态图片
     attempt: 3,
 
 

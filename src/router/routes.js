@@ -3,10 +3,9 @@ import Discovery from '../components/Discovery.vue'
 
 export default [
     {
-       path:'/',
-       redirect:'/discovery'
+        path: '/',
+        redirect: '/discovery'
     },
-
     {
         path: '/discovery',
         component: Discovery
@@ -21,12 +20,17 @@ export default [
     },
     {
         path: '/mvs',
-        component: () => import('../components/mvs.vue')
+        component: () => import('../components/mvs.vue'),
     },
     {
         path: '/result',
         component: () => import('../components/result.vue')
+    },
+    {
+        path: '/mv',
+        component: () => import('../components/Mvplayer.vue')
     }
+
 
 
 
