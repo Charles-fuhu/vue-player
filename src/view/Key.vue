@@ -33,20 +33,24 @@
     <div class="main">
       <router-view @getInfo="setPlayer"></router-view>
     </div>
+    <div class="player">
+        <aplayer :audio="songLists" :lrcType="1" mutex :fixed="fixed"></aplayer>
+      </div>
+      
     <!-- 播放标签 -->
 
-    <div class="player">
-      <aplayer :audio="songLists" :lrcType="1" :autoplay="auto" mutex listFolded></aplayer>
-    </div>
+    
   </div>
 </template>
 
 <script>
 import { songUrl } from '../api/discovery'
+import { getLyc } from '../api/song'
 export default {
   data() {
     return {
-      auto:true,
+      fixed: false,
+      auto: true,
       songLists: [
         {
           id: 0,
@@ -60,21 +64,25 @@ export default {
     };
   },
   methods: {
+    //渲染播放器页面数据
     setPlayer(item) {
-      
       this.songLists[0].id = item.id
       this.songLists[0].cover = item.album.picUrl
       this.songLists[0].name = item.name
       this.songLists[0].artist = item.album.artists['0'].name
-      this.setMusicPlayer()
-    },
-    async setMusicPlayer() {
-      let id = this.songLists[0].id
-       const {data} = await songUrl({ id: id })
-       
-       this.songLists[0].url = data.data[0].url
+      this.setMusicPlayer(item.id)
+      this.setLyric(item.id)
 
+    },
+    async setMusicPlayer(id) {
+      const { data } = await songUrl({ id: id })
+      this.songLists[0].url = data.data[0].url
+    },
+    async setLyric(id) {
+      const { data } = await getLyc(id)
+      this.songLists[0].lrc = data.lrc.lyric
     }
+
 
   }
 

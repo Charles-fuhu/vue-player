@@ -3,7 +3,7 @@
     <el-carousel :interval="4000" type="card" height="200px">
       <!--循环生成标签，轮播图-->
       <el-carousel-item v-for="(item, index) in bannerList" :key="index">
-        <img v-lazy="item.imageUrl" alt="" class="circle" />
+        <img v-lazy="item.imageUrl" alt class="circle" />
       </el-carousel-item>
     </el-carousel>
 
@@ -16,7 +16,7 @@
             <div class="desc-wrap">
               <span class="desc">热门推荐</span>
             </div>
-            <img v-lazy="songs.picUrl" alt="" />
+            <img v-lazy="songs.picUrl" alt />
             <span class="iconfont icon-play"></span>
           </div>
           <p class="name">{{ songs.name }}</p>
@@ -48,19 +48,19 @@
       <div class="items">
         <div class="item" v-for="(mv,index) in  MV" :key="index" @click="toMv(mv.id)">
           <div class="img-wrap">
-            <img v-lazy="mv.picUrl" alt="" />
+            <img v-lazy="mv.picUrl" alt />
             <span class="iconfont icon-play"></span>
             <div class="num-wrap">
               <div class="iconfont icon-play"></div>
               <!-- 播放次数 -->
-              <div class="num">{{mv.playCount | formatCount }}</div>
+              <div class="num">{{ mv.playCount | formatCount }}</div>
             </div>
           </div>
           <div class="info-wrap">
             <!-- mv名 -->
-            <div class="name">{{mv.name}}</div>
+            <div class="name">{{ mv.name }}</div>
             <!-- 歌手名 -->
-            <div class="singer">{{mv.artistName}}</div>
+            <div class="singer">{{ mv.artistName }}</div>
           </div>
         </div>
       </div>
@@ -87,13 +87,13 @@ export default {
     };
   },
   methods: {
-    toMv(id){
+    toMv(id) {
       this.$router.push(`/mv?id=${id}`)
     },
     playMusic(id) {
       songUrl({ id: id }).then((res) => {
         this.$parent.songLists[0].url = res.data.data[0].url;
-       
+
       });
     },
   },

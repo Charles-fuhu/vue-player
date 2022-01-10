@@ -30,7 +30,7 @@
             <div class="img-wrap">
               <img v-lazy="item.album.picUrl" :key="item.album.picUrl" alt />
               <!-- 播放按钮 -->
-              <span class="iconfont icon-play"></span>
+              <span class="iconfont icon-play" ></span>
             </div>
           </td>
           <td>
@@ -53,6 +53,7 @@
 
 <script>
 import { getSongData } from "../api/song";
+
 
 export default {
   data() {

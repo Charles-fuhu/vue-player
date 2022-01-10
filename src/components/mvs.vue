@@ -118,7 +118,7 @@ export default {
         offset: (this.page - 1) * this.limit,
         limit: this.limit
       })
-      
+
       this.mvList = data.data
       if (data.count) {
         this.total = data.count
@@ -132,9 +132,9 @@ export default {
     //给mvwatch组件传mv的id值
     toMv(id) {
       this.$router.push(`/mv?id=${id}`);
-      this.$parent.url = ''
-
     }
+
+
   },
   created() {
     this.getData()
