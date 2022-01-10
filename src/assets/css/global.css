@@ -4,8 +4,8 @@ html {
   margin: 0;
   padding: 0;
   font-weight: 400;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
- Microsoft YaHei, '\5FAE\8F6F\96C5\9ED1', Arial, sans-serif;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, "\5FAE\8F6F\96C5\9ED1", Arial,
+    sans-serif;
 }
 
 * {
@@ -77,8 +77,6 @@ ol {
   border-bottom: none;
   padding: 12px;
   text-align: center;
-  
-  
 }
 /* 
 .el-table td:first-child {
@@ -417,7 +415,6 @@ ol {
 
 .mv-container {
   display: flex;
-  
 }
 .mv-container .title {
   margin-bottom: 20px;
@@ -440,7 +437,7 @@ ol {
 
 .mv-container .mv-wrap .video-wrap {
   width: 100%;
-  height:400px;
+  height: 400px;
   margin-bottom: 20px;
 }
 
@@ -667,7 +664,7 @@ ol {
 }
 
 .mvs-container .filter-wrap > div span.title::before {
-  content: '', pos;
+  content: "", pos;
 }
 
 .mvs-container .filter-wrap > div ul {
@@ -818,7 +815,7 @@ ol {
 }
 
 .playlist-container .top-wrap .info-wrap .tag-wrap li:not(:last-child)::after {
-  content: '/';
+  content: "/";
   margin: 0 4px;
 }
 
@@ -1294,12 +1291,14 @@ ol {
 }
 
 .index-container .player {
-  background: #f1f3f4;
-  height: 60px;
+  /* background: #f1f3f4; */
+  /* height: 60px; */
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .index-container audio {
@@ -1387,6 +1386,7 @@ ol {
   display: flex;
   align-items: center;
 }
+
 
 #app {
   height: 100%;

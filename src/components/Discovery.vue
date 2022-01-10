@@ -92,8 +92,8 @@ export default {
     },
     playMusic(id) {
       songUrl({ id: id }).then((res) => {
-        this.$parent.url = res.data.data[0].url;
-        // console.log(this.$parent.url)
+        this.$parent.songLists[0].url = res.data.data[0].url;
+       
       });
     },
   },

@@ -15,8 +15,8 @@
       </div>
     </div>
     <div class="right-box">
-      <span style="margin-right: 30px; font-size: 25px; font-weight: 600;">
-        <a href="https://gitee.com/hou-mingjun/vue-music-player">Gitee</a>
+      <span class="gitee" style="margin-right: 30px; font-size: 25px; font-weight: 600;">
+        <a href="https://gitee.com/hou-mingjun/vue-music-player" target="blank">Gitee</a>
       </span>
       <div class="el-input el-input--small el-input--prefix">
         <!-- 搜索框 -->

@@ -13,7 +13,7 @@
       :total="1000"
     >
     </el-pagination>
-    <img src="../assets/result.png" alt="" />
+   
   </div>
 </template>
 

@@ -31,34 +31,55 @@
     </div>
     <!-- 主体区域 -->
     <div class="main">
-      <router-view></router-view>
+      <router-view @getInfo="setPlayer"></router-view>
     </div>
     <!-- 播放标签 -->
 
     <div class="player">
-      <!-- autoplay 自动播放 -->
-      <audio
-        :src="url"
-        controls
-        autoplay
-      ></audio>
+      <aplayer :audio="songLists" :lrcType="1" :autoplay="auto" mutex listFolded></aplayer>
     </div>
   </div>
 </template>
 
 <script>
-import VueAplayer from "vue-aplayer";
+import { songUrl } from '../api/discovery'
 export default {
-  components: {
-    VueAplayer,
-  },
-  name: "index",
-  data () {
+  data() {
     return {
-      url:''
+      auto:true,
+      songLists: [
+        {
+          id: 0,
+          url: '',
+          name: '',
+          artist: '',
+          cover: '',
+          lrc: ''
+        }
+      ]
+    };
+  },
+  methods: {
+    setPlayer(item) {
+      
+      this.songLists[0].id = item.id
+      this.songLists[0].cover = item.album.picUrl
+      this.songLists[0].name = item.name
+      this.songLists[0].artist = item.album.artists['0'].name
+      this.setMusicPlayer()
+    },
+    async setMusicPlayer() {
+      let id = this.songLists[0].id
+       const {data} = await songUrl({ id: id })
+       
+       this.songLists[0].url = data.data[0].url
+
     }
+
   }
-};
+
+}
+
 </script>
 
 <style>

@@ -18,13 +18,19 @@
         <th>时长</th>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in lists" :key="index" v-show="index < 10" class="el-table__row">
+        <tr
+          v-for="(item, index) in lists"
+          :key="item.id"
+          v-show="index < 10"
+          class="el-table__row"
+          @click="getInfo(item)"
+        >
           <td>{{ index + 1 }}</td>
           <td>
             <div class="img-wrap">
               <img v-lazy="item.album.picUrl" :key="item.album.picUrl" alt />
               <!-- 播放按钮 -->
-              <span @click="playMusic(item.id)" class="iconfont icon-play"></span>
+              <span class="iconfont icon-play"></span>
             </div>
           </td>
           <td>
@@ -47,40 +53,36 @@
 
 <script>
 import { getSongData } from "../api/song";
-import { songUrl } from '../api/discovery'
+
 export default {
   data() {
     return {
       type: 0,
-      lists: []
-    };
+      lists: [],
+    }
   },
   methods: {
     getData() {
       getSongData({ type: this.type }).then(res => {
-
         this.lists = res.data.data
       })
-    },
-    async playMusic(id) {
-      const { data } = await songUrl({ id: id })//拿到歌曲链接地址
-      // console.log(data.data[0].url)
-      this.$parent.url = data.data[0].url //给播放器地址赋值
 
+
+    },//拿到每一首歌的数据（图片，歌手，歌名）
+    getInfo(item) {
+
+      this.$emit('getInfo', item)
     }
-
-
   },
   watch: {
     type() {
       this.getData()
     }
   },
-
   created() {
     this.getData()
   }
-};
+}
 </script>
 
 <style>
