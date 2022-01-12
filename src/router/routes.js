@@ -1,6 +1,4 @@
 import Discovery from '../components/Discovery.vue'
-
-
 export default [
     {
         path: '/',
@@ -29,9 +27,9 @@ export default [
     {
         path: '/mv',
         component: () => import('../components/Mvplayer.vue')
+    },
+    {
+        path: '/toplaylist',
+        component: () => import('../components/Toplaylist.vue')
     }
-
-
-
-
 ]

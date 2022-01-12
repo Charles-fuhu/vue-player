@@ -61,9 +61,7 @@
       </div>
     </div>
     <!--MV播放窗口-->
-
     <!-- mv容器 -->
-
     <div class="mvs">
       <div class="items">
         <div v-for="item in mvList" :key="item.id" class="item" @click="toMv(item.id)">
@@ -71,7 +69,7 @@
             <img v-lazy="item.cover" alt />
             <div class="num-wrap">
               <div class="iconfont icon-play"></div>
-              <div class="num">{{ item.playCount | formatCount }}</div>
+              <div class="num">{{ item.playCount | formatCount }}次</div>
             </div>
           </div>
           <div class="info-wrap">
@@ -92,7 +90,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { getMvs } from "../api/mvs"
 export default {
@@ -105,7 +102,6 @@ export default {
       page: 1,
       total: 0,
       mvList: [],
-
     }
   },
   methods: {
@@ -118,7 +114,6 @@ export default {
         offset: (this.page - 1) * this.limit,
         limit: this.limit
       })
-
       this.mvList = data.data
       if (data.count) {
         this.total = data.count
@@ -132,9 +127,8 @@ export default {
     //给mvwatch组件传mv的id值
     toMv(id) {
       this.$router.push(`/mv?id=${id}`);
+      this.$parent.songLists[0].url = ''
     }
-
-
   },
   created() {
     this.getData()
@@ -161,6 +155,5 @@ export default {
   }
 }
 </script>
-
 <style>
 </style>

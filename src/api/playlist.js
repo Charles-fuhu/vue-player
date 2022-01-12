@@ -19,7 +19,16 @@ export function topList({ cat, offset }) {
       limit: 10,
       offset,
       cat
-
     }
   });
+}
+//歌单详情
+export function playlistDetail({ id }) {
+  return request({
+    url: "/playlist/detail",
+    method: "get",
+    params: {
+      id
+    }
+  })
 }

@@ -6,7 +6,7 @@
           <img src="../assets/音乐演奏.svg" style="width:60px" />
         </span>
       </div>
-      <div class="history-wrapper"></div>
+      <div class="history-wrapper">在这里，你甚至可以听会歌</div>
     </div>
     <div class="right-box">
       <span class="gitee" style="margin-right: 30px; font-size: 25px; font-weight: 600;">
@@ -28,10 +28,6 @@
     </div>
   </div>
 </template>
-
-
-
-
 <script>
 export default {
   data() {
@@ -41,16 +37,14 @@ export default {
   },
   methods: {
     toResult() {
-      if(this.search == 0){
+      if (this.search == 0) {
         this.$message.warning('请输入内容')
-      }else{
+      } else {
         this.$router.push(`/result?keywords=${this.search}`)
       }
-      
     }
   }
 }
 </script>
-
 <style>
 </style>

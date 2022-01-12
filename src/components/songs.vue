@@ -23,14 +23,14 @@
           :key="item.id"
           v-show="index < 10"
           class="el-table__row"
-          @click="getInfo(item)"
+          @click="getMusicId(item.id)"
         >
-          <td>{{ index + 1 }}</td>
+          <td></td>
           <td>
             <div class="img-wrap">
               <img v-lazy="item.album.picUrl" :key="item.album.picUrl" alt />
               <!-- 播放按钮 -->
-              <span class="iconfont icon-play" ></span>
+              <span class="iconfont icon-play"></span>
             </div>
           </td>
           <td>
@@ -50,11 +50,8 @@
     </table>
   </div>
 </template>
-
 <script>
 import { getSongData } from "../api/song";
-
-
 export default {
   data() {
     return {
@@ -67,12 +64,9 @@ export default {
       getSongData({ type: this.type }).then(res => {
         this.lists = res.data.data
       })
-
-
     },//拿到每一首歌的数据（图片，歌手，歌名）
-    getInfo(item) {
-
-      this.$emit('getInfo', item)
+    getMusicId(id) {
+      this.$emit('getId', id)
     }
   },
   watch: {
@@ -85,6 +79,5 @@ export default {
   }
 }
 </script>
-
 <style>
 </style>

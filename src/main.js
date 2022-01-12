@@ -9,8 +9,6 @@ import "babel-polyfill"
 import APlayer from '@moefe/vue-aplayer'
 import VueLazyload from 'vue-lazyload'
 // 全局过滤器
-
-
 Vue.filter('formatDuration', (dt) => {
     let min = Math.ceil(dt / 1000 / 60);
     // 转分
@@ -20,7 +18,6 @@ Vue.filter('formatDuration', (dt) => {
     sec = sec < 10 ? '0' + sec : sec;
     return min + ':' + sec;
 })
-
 Vue.filter('formatCount', (count) => {
     if (count / 10000 > 10) {
         return parseInt(count / 10000) + '万';
@@ -28,8 +25,6 @@ Vue.filter('formatCount', (count) => {
         return count;
     }
 })
-
-
 Vue.use(element)
 Vue.use(VueLazyload, {
     error: require('./assets/1.png'), //加载图片失败图片
@@ -40,18 +35,9 @@ Vue.use(APlayer, {
     defaultCover: require('./assets/推荐音乐图片.jpg'),
     productionTip: true,
 });
-
-
-
 Vue.use(VueRouter)
-
-
 Vue.config.productionTip = false
-
-
 new Vue({
     render: h => h(App),
     router,
-
-
 }).$mount('#app')

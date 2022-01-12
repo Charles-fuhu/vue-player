@@ -22,7 +22,6 @@ export function getNewSong(config) {
             limit: config
         }
     })
-
 }
 // 获取歌曲url
 export function songUrl({ id }) {
@@ -32,12 +31,11 @@ export function songUrl({ id }) {
             id
         }
     })
-
 }
 // 获取推荐MV
 export function newMV(config) {
     return request({
-        url: '/personalized/mv',
+        url: '/mv/first',
         params: {
             limit: config
         }

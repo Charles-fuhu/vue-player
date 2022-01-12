@@ -16,7 +16,6 @@
     <div class="tab-container">
       <!-- tab栏 顶部 -->
       <div class="tab-bar">
-        
         <span class="item" :class="{ active: cat == '欧美' }" @click="cat = '欧美'">欧美</span>
         <span class="item" :class="{ active: cat == '华语' }" @click="cat = '华语'">华语</span>
         <span class="item" :class="{ active: cat == '流行' }" @click="cat = '流行'">流行</span>
@@ -34,7 +33,12 @@
       <!-- tab的内容区域 -->
       <div class="tab-content">
         <div class="items">
-          <div class="item" v-for="(item,index) in playList" :key="index">
+          <div
+            class="item"
+            v-for="(item,index) in playList"
+            :key="index"
+            @click="toPlayList(item.id)"
+          >
             <div class="img-wrap">
               <div class="num-wrap">
                 播放量:
@@ -59,7 +63,6 @@
     ></el-pagination>
   </div>
 </template>
-
 <script>
 import { highquality, topList } from '../api/playlist';
 export default {
@@ -92,9 +95,9 @@ export default {
   },
   methods: {
     // 去歌单详情页面
-    // toPlayList(id) {
-    //   this.$router.push(`/playlist?id=${id}`);
-    // },
+    toPlayList(id) {
+      this.$router.push(`/toplaylist?id=${id}`);
+    },
     // 获取歌单信息
     getData() {
       highquality({ cat: this.cat }).then(res => {
@@ -126,6 +129,5 @@ export default {
   }
 };
 </script>
-
 <style lang="scss">
 </style>

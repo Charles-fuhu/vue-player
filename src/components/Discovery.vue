@@ -6,7 +6,6 @@
         <img v-lazy="item.imageUrl" alt class="circle" />
       </el-carousel-item>
     </el-carousel>
-
     <!-- 推荐歌单 -->
     <div class="recommend">
       <h3 class="title">推荐歌单</h3>
@@ -27,7 +26,7 @@
     <div class="news">
       <h3 class="title">最新音乐</h3>
       <div class="items">
-        <div class="item" v-for="(song, index) in newSong" :key="index">
+        <div class="item" v-for="(song, index) in newSong" :key="index" @click="passID(song.id)">
           <div class="img-wrap">
             <!-- 封面 -->
             <img v-lazy="song.picUrl" />
@@ -48,7 +47,7 @@
       <div class="items">
         <div class="item" v-for="(mv,index) in  MV" :key="index" @click="toMv(mv.id)">
           <div class="img-wrap">
-            <img v-lazy="mv.picUrl" alt />
+            <img v-lazy="mv.cover" alt />
             <span class="iconfont icon-play"></span>
             <div class="num-wrap">
               <div class="iconfont icon-play"></div>
@@ -67,16 +66,13 @@
     </div>
   </div>
 </template>
-
 <script>
 import {
   getBanner,
   getNewSong,
   getSongList,
-  songUrl,
   newMV,
 } from "../api/discovery";
-
 export default {
   data() {
     return {
@@ -89,13 +85,11 @@ export default {
   methods: {
     toMv(id) {
       this.$router.push(`/mv?id=${id}`)
+      this.$parent.songLists[0].url = ''
     },
-    playMusic(id) {
-      songUrl({ id: id }).then((res) => {
-        this.$parent.songLists[0].url = res.data.data[0].url;
-
-      });
-    },
+    passID(id) {
+      this.$emit('passMusicId', id)
+    }
   },
   created() {
     getBanner().then((res) => {
@@ -107,13 +101,12 @@ export default {
     getNewSong(10).then((res) => {
       this.newSong = res.data.result;
     });
-    newMV(4).then((res) => {
-      // console.log(res.data.result);
-      this.MV = res.data.result;
+    newMV(8).then((res) => {
+      // console.log(res.data.data);
+      this.MV = res.data.data;
     });
   },
 };
 </script>
-
 <style>
 </style>

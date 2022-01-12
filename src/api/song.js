@@ -1,5 +1,4 @@
 import { request } from "./request";
-
 export function getSongData({type}){
     return request({
         url:'/top/song',
@@ -8,7 +7,6 @@ export function getSongData({type}){
         }
     })
 }
-
 export function getSongDetail ({ids}) {
    return request({
        url:'/song/detail',

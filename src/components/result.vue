@@ -19,7 +19,7 @@
               class="el-table__row"
               v-for="(item, index) in songList"
               :key="item.id"
-              @click="playMusic(item.id)"
+              @click="PassId(item.id)"
             >
               <td>{{ index + 1 }}</td>
               <td>
@@ -56,7 +56,7 @@
         <div class="items mv">
           <div class="item" v-for="item in mvList" :key="item.id" @click="toMV(item.id)">
             <div class="img-wrap">
-              <img :src="item.cover" alt />
+              <img v-lazy="item.cover" alt />
               <span class="iconfont icon-play"></span>
               <div class="num-wrap">
                 <div class="iconfont icon-play"></div>
@@ -82,7 +82,6 @@
     ></el-pagination>
   </div>
 </template>
-
 <script>
 import { songUrl } from "../api/discovery";
 import { search } from "../api/search";
@@ -102,7 +101,10 @@ export default {
     };
   },
   methods: {
-     toMV(mvid) {
+    PassId(id) {
+      this.$emit('getMusicId', id)
+    },
+    toMV(mvid) {
       this.$router.push(`/mv?id=${mvid}`);
     },
     handleCurrentChange(val) {
@@ -135,7 +137,6 @@ export default {
             this.playList = res.data.result.playlists;
             this.total = res.data.result.playlistCount;
             break;
-
           default:
             this.mvList = res.data.result.mvs;
             this.total = res.data.result.mvCount;
@@ -143,7 +144,6 @@ export default {
         }
       });
     }
-
   },
   watch: {
     type: [
@@ -159,6 +159,5 @@ export default {
   },
 };
 </script>
-
 <style>
 </style>
