@@ -1,4 +1,4 @@
-# vue音乐播放器
+![输入图片说明](src/assets/3.png)# vue音乐播放器
 
 #### 介绍
 基于vue框架的音乐播放器，接口来自https://gitee.com/fudaosheng/Vue-NeteaseCloud-WebMusicApp
@@ -8,7 +8,4 @@
 1. 打开方式npm install
 
 2.npm serve
-
-![1](src/assets/1.png)!
-![1](src/assets/2.png)!
-![1](src/assets/3.png)!
+![MV](src/assets/1.png)![歌单](src/assets/2.png)![主页](src/assets/3.png)
