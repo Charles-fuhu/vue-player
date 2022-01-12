@@ -10,7 +10,7 @@
     <div class="recommend">
       <h3 class="title">推荐歌单</h3>
       <div class="items">
-        <div class="item" v-for="(songs, index) in playList" :key="index">
+        <div class="item" v-for="(songs, index) in playList" :key="index" @click="toPlayList(songs.id)">
           <div class="img-wrap">
             <div class="desc-wrap">
               <span class="desc">热门推荐</span>
@@ -30,7 +30,7 @@
           <div class="img-wrap">
             <!-- 封面 -->
             <img v-lazy="song.picUrl" />
-            <span class="iconfont icon-play" @click="playMusic(song.id)"></span>
+            <span class="iconfont icon-play"></span>
           </div>
           <div class="song-wrap">
             <!-- 歌名 -->
@@ -83,6 +83,9 @@ export default {
     };
   },
   methods: {
+    toPlayList(id) {
+      this.$router.push(`/toplaylist?id=${id}`);
+    },
     toMv(id) {
       this.$router.push(`/mv?id=${id}`)
       this.$parent.songLists[0].url = ''

@@ -29,6 +29,11 @@ export default {
     },
     created() {
         this.getInfo()
+    },
+    watch:{
+      mvUrl(){
+          this.$parent.songLists[0].url = '1'
+      }
     }
 }
 </script>

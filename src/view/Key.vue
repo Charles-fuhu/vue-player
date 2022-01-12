@@ -34,7 +34,14 @@
       <router-view @passMusicId="setIdFromPlayList" @getId="setId" @getMusicId="setIdFromResult"></router-view>
     </div>
     <div class="player">
-      <aplayer :audio="songLists" :lrcType="1" :mutex="mutex" :fixed="fixed"></aplayer>
+      <aplayer
+        :audio="songLists"
+        :lrcType="1"
+        :mutex="mutex"
+        :fixed="fixed"
+        :autoplay="auto"
+        :theme="theme"
+      ></aplayer>
     </div>
     <!-- 播放标签 -->
   </div>
@@ -45,27 +52,37 @@ import { getLyc, getSongDetail } from '../api/song'
 export default {
   data() {
     return {
+      theme: "#cfc1ed",
       mutex: true,
-      id: 0,
-      fixed: false,
+      id: 167876,
+      fixed: true,
       auto: true,
       songLists: [
         {
-          id: 0,
+          id: 167876,
           url: '',
-          name: '',
-          artist: '',
-          cover: '',
-          lrc: ''
+          name: '有何不可',
+          artist: '许嵩',
+          cover: 'https://p2.music.126.net/KyBR4ZDYFlzQJE_uyvfjpA==/109951166118671647.jpg',
+          lrc: '',
+          // theme: this.randomColor()
         }
       ]
     };
   },
   methods: {
+    randomColor() {
+      console.log('color')
+      return `#${((Math.random() * 0xffffff) << 0).toString(16)}`;
+    },
+    toggle() {
+      this.theme = !this.theme
+    },
     //设置歌曲播放链接
     async setMusicPlayer(id) {
       const { data } = await songUrl({ id: id })
       this.songLists[0].url = data.data[0].url
+      // console.log(this.songLists[0].url)
     },
     //设置歌词
     async setLyric(id) {
@@ -90,6 +107,7 @@ export default {
       const { data: res } = await getSongDetail({ ids: this.id })
       this.songLists[0].id = this.id
       this.songLists[0].cover = res.songs[0].al.picUrl
+      // console.log(this.songLists[0].cover)
       this.songLists[0].name = res.songs[0].name
       this.songLists[0].artist = res.songs[0].ar[0].name
       this.setMusicPlayer(this.id)
@@ -100,7 +118,8 @@ export default {
     id() {
       this.setPlayerData()
     }
-  }
+  },
+
 }
 </script>
 <style>

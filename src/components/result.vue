@@ -21,7 +21,7 @@
               :key="item.id"
               @click="PassId(item.id)"
             >
-              <td>{{ index + 1 }}</td>
+              <td></td>
               <td>
                 <div class="song-wrap">
                   <div class="name-wrap">
@@ -39,7 +39,7 @@
       </el-tab-pane>
       <el-tab-pane label="歌单" name="1000">
         <div class="items">
-          <div class="item" v-for="item in playList" :key="item.id">
+          <div class="item" v-for="item in playList" :key="item.id" @click="toPlayList(item.id)">
             <div class="img-wrap">
               <div class="num-wrap">
                 播放量:
@@ -101,6 +101,9 @@ export default {
     };
   },
   methods: {
+    toPlayList(id) {
+      this.$router.push(`/toplaylist?id=${id}`);
+    },
     PassId(id) {
       this.$emit('getMusicId', id)
     },
