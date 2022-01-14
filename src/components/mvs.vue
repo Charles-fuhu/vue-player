@@ -127,7 +127,7 @@ export default {
     //给mvwatch组件传mv的id值
     toMv(id) {
       this.$router.push(`/mv?id=${id}`);
-      this.$parent.songLists[0].url = ''
+      
     }
   },
   created() {

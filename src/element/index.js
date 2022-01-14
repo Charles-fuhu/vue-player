@@ -69,7 +69,7 @@ import {
     // Divider,
     // Image,
     // Calendar,
-    // Backtop,
+    Backtop,
     // PageHeader,
     // CascaderPanel,
     Loading,
@@ -118,7 +118,7 @@ const element = {
         Vue.use(Tabs);
         Vue.use(TabPane);
         Vue.use(Tag);
-        Vue.use(Tree);
+        Vue.use(Backtop)
         // Vue.use(Alert);
         // Vue.use(Slider);
         // Vue.use(Icon);
@@ -134,7 +134,7 @@ const element = {
         // Vue.use(Step);
         Vue.use(Carousel);
         Vue.use(CarouselItem);
-        Vue.use(Loading.directive);
+        // Vue.use(Loading.directive);
         Vue.prototype.$message = Message;
     }
 }

@@ -31,95 +31,49 @@
     </div>
     <!-- 主体区域 -->
     <div class="main">
-      <router-view @passMusicId="setIdFromPlayList" @getId="setId" @getMusicId="setIdFromResult"></router-view>
+      <router-view></router-view>
     </div>
+
     <div class="player">
       <aplayer
-        :audio="songLists"
+        :audio="playerList"
         :lrcType="1"
         :mutex="mutex"
         :fixed="fixed"
-        :autoplay="auto"
-        :theme="theme"
+        ref="aplayer"
+        @canplay="autoplay"
+        :volume="volume"
       ></aplayer>
     </div>
     <!-- 播放标签 -->
   </div>
 </template>
 <script>
-import { songUrl, } from '../api/discovery'
-import { getLyc, getSongDetail } from '../api/song'
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      theme: "#cfc1ed",
+      volume: 0.3,
       mutex: true,
       id: 167876,
       fixed: true,
-      auto: true,
-      songLists: [
-        {
-          id: 167876,
-          url: '',
-          name: '有何不可',
-          artist: '许嵩',
-          cover: 'https://p2.music.126.net/KyBR4ZDYFlzQJE_uyvfjpA==/109951166118671647.jpg',
-          lrc: '',
-          // theme: this.randomColor()
-        }
-      ]
+
     };
   },
   methods: {
-    randomColor() {
-      console.log('color')
-      return `#${((Math.random() * 0xffffff) << 0).toString(16)}`;
+    //当MV播放时，音乐暂停
+    autoPause() {
+      this.$refs.aplayer.pause()
     },
-    toggle() {
-      this.theme = !this.theme
+    //当音乐缓存准备完毕自动播放
+    autoplay() {
+      this.$refs.aplayer.play()
+      
     },
-    //设置歌曲播放链接
-    async setMusicPlayer(id) {
-      const { data } = await songUrl({ id: id })
-      this.songLists[0].url = data.data[0].url
-      // console.log(this.songLists[0].url)
-    },
-    //设置歌词
-    async setLyric(id) {
-      const { data } = await getLyc(id)
-      this.songLists[0].lrc = data.lrc.lyric
-    },
-    //更具不同子组件传来的ID设置歌曲id
-    setIdFromPlayList(id) {
-      this.id = id
-    },
-    setIdFromResult(id) {
-      this.id = id
-    },
-    setId(id) {
-      this.id = id
-    },
-    pushData(id) {
-      this.id = id
-    },
-    //根据id获取歌名,歌手名，图片地址，渲染播放器数据
-    async setPlayerData() {
-      const { data: res } = await getSongDetail({ ids: this.id })
-      this.songLists[0].id = this.id
-      this.songLists[0].cover = res.songs[0].al.picUrl
-      // console.log(this.songLists[0].cover)
-      this.songLists[0].name = res.songs[0].name
-      this.songLists[0].artist = res.songs[0].ar[0].name
-      this.setMusicPlayer(this.id)
-      this.setLyric(this.id)
-    }
   },
-  watch: {
-    id() {
-      this.setPlayerData()
-    }
+  computed: {
+    ...mapState(['playerList'])
   },
-
 }
 </script>
 <style>

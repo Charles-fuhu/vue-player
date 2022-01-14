@@ -1153,7 +1153,7 @@ ol {
   color: gray;
   border-radius: 50%;
   transition: 0.2s;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 .top-container .left-box .history-wrapper .iconfont:first-child {
   margin-right: 10px;

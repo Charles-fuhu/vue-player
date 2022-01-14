@@ -2,8 +2,8 @@
   <div class="top-container">
     <div class="left-box">
       <div class="icon-wrapper">
-        <span style="margin-left: 30px;cursor:pointer">
-          <img src="../assets/音乐演奏.svg" style="width:60px" />
+        <span style="margin-left: 30px;">
+          <img src="../assets/LOGO.svg" style="width:60px" />
         </span>
       </div>
       <div class="history-wrapper">天空好想下雨，我好想住你隔壁</div>

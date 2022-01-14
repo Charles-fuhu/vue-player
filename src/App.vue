@@ -2,7 +2,7 @@
   <div id="app">
     <top></top>
     <key></key>
-  </div>
+    </div>
 </template>
 <script>
 import top from "./view/Top.vue";

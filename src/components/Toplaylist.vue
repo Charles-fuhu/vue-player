@@ -35,10 +35,15 @@
                         <th>时长</th>
                     </thead>
                     <tbody>
-                        <tr class="el-table__row" v-for="item in tableData" :key="item.id" @click="passMusicId(item.id)">
+                        <tr
+                            class="el-table__row"
+                            v-for="item in tableData"
+                            :key="item.id"
+                            @click="getPlayerInfo(item)"
+                        >
                             <td></td>
                             <td>
-                                <div class="img-wrap" >
+                                <div class="img-wrap">
                                     <img :src="item.al.picUrl" alt />
                                     <span class="iconfont icon-play"></span>
                                 </div>
@@ -69,6 +74,7 @@
 </template>
 <script>
 import { playlistDetail } from "../api/playlist"
+import { mapActions } from "vuex";
 export default {
     name: 'playlist',
     data() {
@@ -84,9 +90,7 @@ export default {
         };
     },
     methods: {
-        passMusicId(id){
-            this.$emit('passMusicId',id)
-        },
+        ...mapActions(['getPlayerInfo']),
         toMV(id) {
             this.$router.push(`/mv?id=${id}`)
         },
@@ -104,7 +108,8 @@ export default {
     mounted() {
         const { id } = this.$route.query
         this.getPlayList(id)
-    }
+    },
+  
 }
 </script>
 <style>

@@ -32,7 +32,7 @@ export default {
     },
     watch:{
       mvUrl(){
-          this.$parent.songLists[0].url = '1'
+          this.$parent.autoPause()
       }
     }
 }

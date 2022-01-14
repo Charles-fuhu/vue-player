@@ -10,7 +10,12 @@
     <div class="recommend">
       <h3 class="title">推荐歌单</h3>
       <div class="items">
-        <div class="item" v-for="(songs, index) in playList" :key="index" @click="toPlayList(songs.id)">
+        <div
+          class="item"
+          v-for="(songs, index) in playList"
+          :key="index"
+          @click="toPlayList(songs.id)"
+        >
           <div class="img-wrap">
             <div class="desc-wrap">
               <span class="desc">热门推荐</span>
@@ -26,7 +31,12 @@
     <div class="news">
       <h3 class="title">最新音乐</h3>
       <div class="items">
-        <div class="item" v-for="(song, index) in newSong" :key="index" @click="passID(song.id)">
+        <div
+          class="item"
+          v-for="(song, index) in newSong"
+          :key="index"
+          @click="getPlayerInfo(song)"
+        >
           <div class="img-wrap">
             <!-- 封面 -->
             <img v-lazy="song.picUrl" />
@@ -73,6 +83,7 @@ import {
   getSongList,
   newMV,
 } from "../api/discovery";
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -83,6 +94,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['getPlayerInfo']),
     toPlayList(id) {
       this.$router.push(`/toplaylist?id=${id}`);
     },
@@ -90,9 +102,7 @@ export default {
       this.$router.push(`/mv?id=${id}`)
       this.$parent.songLists[0].url = ''
     },
-    passID(id) {
-      this.$emit('passMusicId', id)
-    }
+
   },
   created() {
     getBanner().then((res) => {
@@ -105,7 +115,7 @@ export default {
       this.newSong = res.data.result;
     });
     newMV(8).then((res) => {
-      // console.log(res.data.data);
+
       this.MV = res.data.data;
     });
   },

@@ -17,9 +17,9 @@
           <tbody>
             <tr
               class="el-table__row"
-              v-for="(item, index) in songList"
+              v-for="item in songList"
               :key="item.id"
-              @click="PassId(item.id)"
+              @click="getPlayerInfo(item)"
             >
               <td></td>
               <td>
@@ -39,7 +39,12 @@
       </el-tab-pane>
       <el-tab-pane label="歌单" name="1000">
         <div class="items">
-          <div class="item" v-for="item in playList" :key="item.id" @click="toPlayList(item.id)">
+          <div
+            class="item"
+            v-for="(item,index) in playList"
+            :key="index"
+            @click="toPlayList(item.id)"
+          >
             <div class="img-wrap">
               <div class="num-wrap">
                 播放量:
@@ -54,7 +59,7 @@
       </el-tab-pane>
       <el-tab-pane label="MV" name="1004">
         <div class="items mv">
-          <div class="item" v-for="item in mvList" :key="item.id" @click="toMV(item.id)">
+          <div class="item" v-for="(item,index) in mvList" :key="index" @click="toMV(item.id)">
             <div class="img-wrap">
               <img v-lazy="item.cover" alt />
               <span class="iconfont icon-play"></span>
@@ -83,8 +88,8 @@
   </div>
 </template>
 <script>
-import { songUrl } from "../api/discovery";
 import { search } from "../api/search";
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -101,22 +106,17 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['getPlayerInfo']),
     toPlayList(id) {
       this.$router.push(`/toplaylist?id=${id}`);
     },
-    PassId(id) {
-      this.$emit('getMusicId', id)
-    },
+
     toMV(mvid) {
       this.$router.push(`/mv?id=${mvid}`);
     },
     handleCurrentChange(val) {
       this.page = val;
       this.searchResult();
-    },
-    async playMusic(id) {
-      const { data } = await songUrl({ id: id })
-      this.$parent.songLists[0].url = data.data[0].url
     },
     searchResult() {
       const { limit, type } = this;

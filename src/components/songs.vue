@@ -23,7 +23,7 @@
           :key="item.id"
           v-show="index < 10"
           class="el-table__row"
-          @click="getMusicId(item.id)"
+          @click="getPlayerInfo(item)"
         >
           <td></td>
           <td>
@@ -52,6 +52,7 @@
 </template>
 <script>
 import { getSongData } from "../api/song";
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -60,6 +61,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['getPlayerInfo']),
     getData() {
       getSongData({ type: this.type }).then(res => {
         this.lists = res.data.data
@@ -74,6 +76,7 @@ export default {
       this.getData()
     }
   },
+
   created() {
     this.getData()
   }

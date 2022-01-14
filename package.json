@@ -1,5 +1,5 @@
 {
-  "name": "music-player",
+  "name": "F_music",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,7 +16,8 @@
     "vue": "^2.6.11",
     "vue-aplayer": "^1.6.1",
     "vue-nplayer": "^0.1.8",
-    "vue-router": "^3.5.3"
+    "vue-router": "^3.5.3",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
