@@ -16,6 +16,7 @@ export default {
         obj.cover = res.songs[0].al.picUrl
         obj.id = payload.id
         obj.lrc = lyric.lrc.lyric
+        // console.log(obj.lrc = lyric.lrc.lyric)
         obj.url = song[0].url
         commit(RECEIVE_MUSIC_DATA, obj)//调用mutation里的函数，把获取的数据添加到列表里
         
